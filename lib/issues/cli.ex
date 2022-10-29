@@ -50,5 +50,14 @@ defmodule Issues.CLI do
 
   def process({user, project, _count}) do
     Issues.GithubIssues.fetch(user, project)
+    |> decode_response
+  end
+
+  def decode_response({:ok, body}), do: body
+
+  def decode_response({:error, error}) do
+    # The fact that there is error["message"] is a matter of knowing the GitHub API
+    IO.puts("Error fetching from GitHub: #{error["message"]}")
+    System.stop(2)
   end
 end
