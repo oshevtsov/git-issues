@@ -1,5 +1,6 @@
 defmodule Issues.GithubIssues do
   @user_agent [ {"User-agent", "Elixir dave@pragprog.com"} ]
+  @github_url Application.fetch_env!(:issues, :github_url)
 
   @moduledoc """
   Fetches the list of issues from a GitHub repo.
@@ -11,7 +12,7 @@ defmodule Issues.GithubIssues do
   end
 
   def issues_url(user, project) do
-    "https://api.github.com/repos/#{user}/#{project}/issues"
+    "#{@github_url}/repos/#{user}/#{project}/issues"
   end
 
   def handle_response({_, %{status_code: status_code, body: body}}) do
