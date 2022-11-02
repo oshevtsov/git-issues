@@ -1,6 +1,8 @@
 defmodule TableFormatterTest do
   # Bring in the test functionality
   use ExUnit.Case
+  # Run doctests
+  doctest Issues.TableFormatter
   # And allow us to capture stuff sent to stdout
   import ExUnit.CaptureIO
 
